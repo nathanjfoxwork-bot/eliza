@@ -413,8 +413,9 @@ describe("subscription allowance lifecycle", () => {
       available_amount: "23.000000",
       reserved_amount: "2.000000",
     });
-    // Cap math itself is unchanged; callers pass the expiry from
-    // timeMeteredAllowanceExpiry.
+    // Cap math itself is unchanged. Callers pass grace-extended expiry from
+    // timeMeteredAllowanceExpiry for paid_invoice buckets, so a straddling
+    // window funds fully from allowance.
     expect(
       funding.timeMeteredAllowanceCap({
         requestedAmount: "1.000000" as never,
